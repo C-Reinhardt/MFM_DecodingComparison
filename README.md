@@ -50,6 +50,6 @@ You are free to use, adapt, and build upon this work with attribution.
 
 ## Author
 
-Carolina ELisabeth Reinhardt  
-Bachelor of Psychology (with thesis in Computational Neuroscience)  
+Carolina Elisabeth Reinhardt  
+Bachelor of Psychology and Neuroscience (with thesis in Computational Neuroscience)  
 Maastricht University, 2025  
