@@ -38,25 +38,28 @@ Both are tested at the raw spiking level and after applying MFM approximations.
 
 This analysis estimates the sharpness of neuronal orientation tuning by fitting a von Mises function to the mean evoked firing rates.
 
-1. `scripts/analysis/computeTuningCurves.m`  
+#### Step 1: 
+`scripts/analysis/computeTuningCurves.m`  
    Computes tuning curves (neurons × stimuli) from spike data and saves them as `.mat` files.
 
-2. `scripts/analysis/FitVonMises_TuningSharpness.m`  
+#### Step 2:
+`scripts/analysis/FitVonMises_TuningSharpness.m`  
    Loads the tuning curves, fits a von Mises function to each neuron's response, extracts the κ (kappa) parameter as a sharpness metric, and performs statistical comparisons between OPM and Salt-and-Pepper networks.
 
-3. Outputs:
-   - Tuning curves are saved in `data/`
-   - Intermediate visualization: `figures/MeanTuning_*.png`
-   - Final sharpness comparison plot: `figures/VonMises_TuningSharpness_Boxplot.png`
+**Outputs:**
+- Tuning curves are saved in `data/`
+- Intermediate visualization: `figures/MeanTuning_*.png`
+- Final sharpness comparison plot: `figures/VonMises_TuningSharpness_Boxplot.png`
   
 ### Decoding Analysis
 
 This analysis evaluates how well orientation information can be decoded from neural population activity in the full (non-averaged) network data.
 
-1. `scripts/analysis/full_decodingAndConfusionMatrices.m`  
+#### Step 1:
+`scripts/analysis/full_decodingAndConfusionMatrices.m`  
   Performs multi-class orientation decoding on the full-resolution spike data from the OPM and Salt-and-Pepper network using an ECOC-SVM classifier. Outputs accuracy scores and confusion matrices.
 
-2. Outputs:
+**Outputs:**
 - Decoding accuracy vectors saved to `data/`:
   - `DecodingResults_OPM.mat`
   - `DecodingResults_Salt-and-Pepper.mat`
@@ -73,7 +76,7 @@ This part of the analysis evaluates how well stimulus orientation can be decoded
 
 #### Step 1: Extract Trial-Wise Evoked Responses
 
-- `scripts/analysis/extract_meanfield_responses.m`  
+- `scripts/analysis/extractMeanFieldResponses.m`  
   Computes trial-wise evoked responses for each neuron based on full spike train data, for both OPM and Salt-and-Pepper network architectures. This serves as the input for mean field decoding.
 
   **Outputs** (saved to `data/`):
@@ -84,7 +87,7 @@ This part of the analysis evaluates how well stimulus orientation can be decoded
 
 #### Step 2: Decode from Mean Field Pooled Activity
 
-- `scripts/analysis/decode_meanfield_poisson_ECOC.m`  
+- `scripts/analysis/decodeMeanFieldPoisson_ECOC.m`  
   Applies spatial pooling by grouping neurons (default: 100 neurons per group), summing their responses, and sampling Poisson-distributed spike counts. These pooled signals are used to train a linear ECOC-SVM classifier for orientation decoding, using 5-fold cross-validation.
 
   **Key methods:**
