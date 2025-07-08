@@ -33,6 +33,21 @@ Both are tested at the raw spiking level and after applying MFM approximations.
 - `README.md` – You’re here
 
 ---
+## Analysis Overview
+### Tuning Sharpness Analysis
+
+This analysis estimates the sharpness of neuronal orientation tuning by fitting a von Mises function to the mean evoked firing rates.
+
+1. `scripts/analysis/computeTuningCurves.m`  
+   Computes tuning curves (neurons × stimuli) from spike data and saves them as `.mat` files.
+
+2. `scripts/analysis/FitVonMises_TuningSharpness.m`  
+   Loads the tuning curves, fits a von Mises function to each neuron's response, extracts the κ (kappa) parameter as a sharpness metric, and performs statistical comparisons between OPM and Salt-and-Pepper networks.
+
+3. Outputs:
+   - Tuning curves are saved in `data/`
+   - Intermediate visualization: `figures/MeanTuning_*.png`
+   - Final sharpness comparison plot: `figures/VonMises_TuningSharpness_Boxplot.png`
 
 ## Figures & Poster
 
