@@ -1,4 +1,4 @@
-% decodeAndConfusionMatrix.m
+% full_decodingAndConfusionMatrices.m
 % -------------------------------------------------------------
 % Two‐stage, memory‐safe decoding with robust catch blocks
 % -------------------------------------------------------------
