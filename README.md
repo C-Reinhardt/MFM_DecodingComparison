@@ -115,6 +115,37 @@ This part of the analysis evaluates how well stimulus orientation can be decoded
 
 These results allow direct comparison between decoding performance under mean field approximations and full-model spike-based decoding.
 
+--- 
+
+#### Analytic Confidence Intervals
+
+- `scripts/analysis/computeCIs_full_and_MF.m`  
+  Computes binomial (Clopper–Pearson) 95% confidence intervals on the classification accuracy for both full-model and mean-field decoders. Complements the permutation-based significance testing.
+
+This provides an additional layer of statistical validation for the observed decoding performance.
+
+---
+
+### Permutation Testing for Decoder Validation
+
+To verify that above-chance decoding does not result from spurious structure or overfitting, we performed nonparametric permutation tests on both full-model and mean-field decoding results.
+
+#### Full Model Permutation Test
+
+- `scripts/analysis/permutationNull_Full_BothNetworks.m`  
+  Constructs an empirical null distribution of decoding accuracies by randomly permuting trial labels 1000 times. The actual decoding accuracy is then compared to this distribution to compute an empirical p-value.
+
+  **Figure Output:**  
+  - `figures/final/PermutationNull_BothNetworks.png`
+
+#### Mean Field Permutation Test
+
+- `scripts/analysis/permutationNull_MF_BothNetworks.m`  
+  Performs the same procedure on the Poisson-sampled mean field decoding results, providing empirical validation of the observed accuracies under the mean field model.
+
+  **Figure Output:**  
+  - `figures/final/MF_PermutationNull_BothNetworks.png`
+    
 ---
 
 ## Figures & Poster
