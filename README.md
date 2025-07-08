@@ -48,6 +48,23 @@ This analysis estimates the sharpness of neuronal orientation tuning by fitting 
    - Tuning curves are saved in `data/`
    - Intermediate visualization: `figures/MeanTuning_*.png`
    - Final sharpness comparison plot: `figures/VonMises_TuningSharpness_Boxplot.png`
+  
+### Decoding Analysis
+
+This analysis evaluates how well orientation information can be decoded from neural population activity in the full (non-averaged) network data.
+
+1. `scripts/analysis/full_decodingAndConfusionMatrices.m`  
+  Performs multi-class orientation decoding on the full-resolution spike data from the OPM and Salt-and-Pepper network using an ECOC-SVM classifier. Outputs accuracy scores and confusion matrices.
+
+2. Outputs:
+- Decoding accuracy vectors saved to `data/`:
+  - `DecodingResults_OPM.mat`
+  - `DecodingResults_Salt-and-Pepper.mat`
+- Confusion matrices saved to `figures/`
+- Optional statistical comparisons (e.g., bootstrap or permutation) may be included
+
+These results serve as the reference decoding performance against which the mean field model (MFM) decoding results will be compared.
+
 
 ## Figures & Poster
 
