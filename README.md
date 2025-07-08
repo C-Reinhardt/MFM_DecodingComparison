@@ -38,9 +38,13 @@ Both are tested at the raw spiking level and after applying MFM approximations.
 
 This analysis estimates the sharpness of neuronal orientation tuning by fitting a von Mises function to the mean evoked firing rates.
 
+---
+
 #### Step 1: 
 `scripts/analysis/computeTuningCurves.m`  
    Computes tuning curves (neurons × stimuli) from spike data and saves them as `.mat` files.
+
+---
 
 #### Step 2:
 `scripts/analysis/FitVonMises_TuningSharpness.m`  
@@ -50,10 +54,14 @@ This analysis estimates the sharpness of neuronal orientation tuning by fitting 
 - Tuning curves are saved in `data/`
 - Intermediate visualization: `figures/MeanTuning_*.png`
 - Final sharpness comparison plot: `figures/VonMises_TuningSharpness_Boxplot.png`
-  
+
+---  
+
 ### Decoding Analysis
 
 This analysis evaluates how well orientation information can be decoded from neural population activity in the full (non-averaged) network data.
+
+---
 
 #### Step 1:
 `scripts/analysis/full_decodingAndConfusionMatrices.m`  
@@ -67,6 +75,8 @@ This analysis evaluates how well orientation information can be decoded from neu
 - Optional statistical comparisons (e.g., bootstrap or permutation) may be included
 
 These results serve as the reference decoding performance against which the mean field model (MFM) decoding results will be compared.
+
+---
 
 ### Mean Field Decoding Analysis
 
@@ -105,7 +115,7 @@ This part of the analysis evaluates how well stimulus orientation can be decoded
 
 These results allow direct comparison between decoding performance under mean field approximations and full-model spike-based decoding.
 
-
+---
 
 ## Figures & Poster
 
