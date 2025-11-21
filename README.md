@@ -26,25 +26,57 @@ Both are tested at the raw spiking level and after applying MFM approximations.
 
 ## Contents
 
-- `decoding_analysis.m` – Code to run raw and MFM decoding
-- `plot_bargraph.m` – MATLAB script for the decoding accuracy figure
-- `simulation_summary.png` – Main figure comparing activity structures
-- `confusion_matrices.png` – Decoding pattern comparison
-- `README.md` – You’re here
+- `scripts/`
+  - `simulation/` – Scripts to construct the OPM and Salt-and-Pepper networks and run the spiking simulations.
+  - `analysis/` – Tuning sharpness, full decoding, mean-field decoding, confidence intervals, and permutation tests.
+- `data/` – Derived `.mat` files such as tuning curves and trial-wise response matrices (no raw 4.3 GB simulation files; see “Simulation data” below).
+- `results/` – Compact result files (e.g. decoding summaries) used for plotting and statistics.
+- `figures/` – Key figures used in the poster and analyses.
+- `Poster.pdf` – Poster “Do Mean Field Models Fail in Disordered Networks?”.
+- `README.md` – Project description and analysis overview.
 
 ---
+
+## Network Simulation and Data Generation
+
+The analyses in this repository are based on spiking network simulations of two architectures:
+
+- An orientation preference map (OPM)–like network with spatially organized tuning.
+- A Salt-and-Pepper network with disordered tuning.
+
+All scripts required to construct these networks and run the simulations are located in:
+
+- `scripts/simulation/`
+
+The simulations produce two large `.mat` files:
+
+- `simulation_results_OPM.mat`
+- `simulation_results_SaltPepper.mat`
+
+Each file contains:
+- Network metadata (`Network` struct; neuron positions, connectivity, time step, trial structure, trial durations, etc.).
+- Stimulus labels (`stimLabels`).
+- Full spike trains for all neurons and trials (`spikesAll`).
+
+These full simulation output files are approximately 4.3 GB each and are therefore not included in this GitHub repository.
+
+All downstream analysis scripts in `scripts/analysis/` (tuning curves, full decoding, mean-field decoding, permutation tests, confidence intervals) assume that, if available, these simulation files are accessible on the MATLAB path (typically in the repository root).
+
+If you require access to the full simulation files for re-analysis, please contact the author directly.
+
+---
+
 ## Analysis Overview
+
+---
+
 ### Tuning Sharpness Analysis
 
 This analysis estimates the sharpness of neuronal orientation tuning by fitting a von Mises function to the mean evoked firing rates.
 
----
-
 #### Step 1: 
 `scripts/analysis/computeTuningCurves.m`  
    Computes tuning curves (neurons × stimuli) from spike data and saves them as `.mat` files.
-
----
 
 #### Step 2:
 `scripts/analysis/FitVonMises_TuningSharpness.m`  
@@ -60,8 +92,6 @@ This analysis estimates the sharpness of neuronal orientation tuning by fitting 
 ### Decoding Analysis
 
 This analysis evaluates how well orientation information can be decoded from neural population activity in the full (non-averaged) network data.
-
----
 
 #### Step 1:
 `scripts/analysis/full_decodingAndConfusionMatrices.m`  
@@ -82,8 +112,6 @@ These results serve as the reference decoding performance against which the mean
 
 This part of the analysis evaluates how well stimulus orientation can be decoded under mean field assumptions, in which neuronal responses are spatially pooled to simulate population-level readout.
 
----
-
 #### Step 1: Extract Trial-Wise Evoked Responses
 
 - `scripts/analysis/extractMeanFieldResponses.m`  
@@ -92,8 +120,6 @@ This part of the analysis evaluates how well stimulus orientation can be decoded
   **Outputs** (saved to `data/`):
   - `MF_responses_OPM.mat`
   - `MF_responses_SaltPepper.mat`
-
----
 
 #### Step 2: Decode from Mean Field Pooled Activity
 
